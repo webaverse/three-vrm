@@ -1,10 +1,6 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
-    "lib": ["es2018", "dom"],
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "strict": true
-  }
+  "extends": "../../tsconfig.json",
+  "include": [
+    "./src"
+  ]
 }
