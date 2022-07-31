@@ -16,14 +16,14 @@ export declare class VRMSpringBoneImporter {
      */
     import(gltf: GLTF): Promise<VRMSpringBoneManager | null>;
     protected _createSpringBone(bone: THREE.Object3D, params?: VRMSpringBoneParameters): VRMSpringBone;
-    protected _importSpringBoneGroupList(gltf: GLTF, schemaSecondaryAnimation: VRMSchema.SecondaryAnimation, colliderGroups: VRMSpringBoneColliderGroup[]): Promise<VRMSpringBoneGroup[]>;
+    protected _importSpringBoneGroupList(gltf: GLTF, schemaSecondaryAnimation: VRMSchema.SecondaryAnimation, colliderGroups: VRMSpringBoneColliderGroup[]): VRMSpringBoneGroup[];
     /**
      * Create an array of [[VRMSpringBoneColliderGroup]].
      *
      * @param gltf A parsed result of GLTF taken from GLTFLoader
      * @param schemaSecondaryAnimation A `secondaryAnimation` field of VRM
      */
-    protected _importColliderMeshGroups(gltf: GLTF, schemaSecondaryAnimation: VRMSchema.SecondaryAnimation): Promise<VRMSpringBoneColliderGroup[]>;
+    protected _importColliderMeshGroups(gltf: GLTF, schemaSecondaryAnimation: VRMSchema.SecondaryAnimation): VRMSpringBoneColliderGroup[];
     /**
      * Create a collider mesh.
      *

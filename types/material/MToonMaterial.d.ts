@@ -49,6 +49,7 @@ export interface MToonParameters extends THREE.ShaderMaterialParameters {
     dstBlend?: number;
     zWrite?: number;
     isOutline?: boolean;
+    fog?: any;
     /**
      * Specify the encoding of input uniform colors.
      *

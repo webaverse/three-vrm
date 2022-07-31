@@ -26,7 +26,7 @@ export class VRMDebug extends VRM {
     debugOption: VRMDebugOptions = {},
   ): Promise<VRM> {
     const importer = new VRMImporterDebug(options);
-    return await importer.import(gltf, debugOption);
+    return importer.import(gltf, debugOption);
   }
 
   /**

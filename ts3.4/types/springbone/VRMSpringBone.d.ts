@@ -68,8 +68,8 @@ export declare class VRMSpringBone {
      * This springbone will be calculated based on the space relative from this object.
      * If this is `null`, springbone will be calculated in world space.
      */
-    protected _center: THREE.Object3D | null;
-    center: THREE.Object3D | null;
+    protected _center: any | null;
+    center: any;
     /**
      * Rotation of parent bone, in world unit.
      * We should update this constantly in [[update]].

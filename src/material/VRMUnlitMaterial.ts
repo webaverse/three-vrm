@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* tslint:disable:member-ordering */
 
 import * as THREE from 'three';
@@ -12,6 +13,7 @@ export interface VRMUnlitMaterialParameters extends THREE.ShaderMaterialParamete
   mainTex_ST?: THREE.Vector4; // _MainTex_ST
 
   renderType?: VRMUnlitMaterialRenderType | number;
+  fog: any;
 }
 
 export enum VRMUnlitMaterialRenderType {

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as THREE from 'three';
 import { mat4InvertCompat } from '../utils/mat4InvertCompat';
 import { getWorldQuaternionLite } from '../utils/math';
@@ -99,11 +101,11 @@ export class VRMSpringBone {
    * This springbone will be calculated based on the space relative from this object.
    * If this is `null`, springbone will be calculated in world space.
    */
-  protected _center: THREE.Object3D | null = null;
-  public get center(): THREE.Object3D | null {
-    return this._center;
+  protected _center: any | null = null;
+  public get center(): any {
+    return this._center as any;
   }
-  public set center(center: THREE.Object3D | null) {
+  public set center(center: THREE.Object3D) {
     // convert tails to world space
     this._getMatrixCenterToWorld(_matA);
 
@@ -112,19 +114,32 @@ export class VRMSpringBone {
     this._nextTail.applyMatrix4(_matA);
 
     // uninstall inverse cache
-    if (this._center?.userData.inverseCacheProxy) {
+    /* if (this._center?.userData.inverseCacheProxy) {
       (this._center.userData.inverseCacheProxy as Matrix4InverseCache).revert();
       delete this._center.userData.inverseCacheProxy;
-    }
+    } */
 
     // change the center
     this._center = center;
 
     // install inverse cache
     if (this._center) {
-      if (!this._center.userData.inverseCacheProxy) {
-        this._center.userData.inverseCacheProxy = new Matrix4InverseCache(this._center.matrixWorld);
-      }
+      const matrixWorldInverse = new THREE.Matrix4();
+      let matrixWorldInverseNeedsUpdate = true;
+      this._center.updateMatrixWorld = (_updateMatrixWorld => () => {
+          matrixWorldInverseNeedsUpdate = true;
+          return _updateMatrixWorld.apply(this, arguments as any);
+      })(this._center.updateMatrixWorld);
+      (this._center as any).getMatrixWorldInverse = () => {
+        if (matrixWorldInverseNeedsUpdate) {
+          matrixWorldInverse.copy((this._center as any).matrixWorld).invert();
+          matrixWorldInverseNeedsUpdate = false;
+        }
+        return matrixWorldInverse;
+      };
+      // if (!this._center.userData.inverseCacheProxy) {
+      //   this._center.userData.inverseCacheProxy = new Matrix4InverseCache(this._center.matrixWorld);
+      // }
     }
 
     // convert tails to center space
@@ -212,7 +227,7 @@ export class VRMSpringBone {
       .sub(this._centerSpacePosition)
       .length();
 
-    this.center = params.center ?? null;
+    this.center = params.center ?? null as any;
   }
 
   /**
@@ -363,7 +378,8 @@ export class VRMSpringBone {
    */
   private _getMatrixWorldToCenter(target: THREE.Matrix4): THREE.Matrix4 {
     if (this._center) {
-      target.copy((this._center.userData.inverseCacheProxy as Matrix4InverseCache).inverse);
+      // target.copy((this._center.userData.inverseCacheProxy as Matrix4InverseCache).inverse);
+      target.copy(this._center.getMatrixWorldInverse());
     } else {
       target.identity();
     }

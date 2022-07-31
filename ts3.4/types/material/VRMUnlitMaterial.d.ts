@@ -5,6 +5,7 @@ export interface VRMUnlitMaterialParameters extends THREE.ShaderMaterialParamete
     mainTex?: THREE.Texture;
     mainTex_ST?: THREE.Vector4;
     renderType?: VRMUnlitMaterialRenderType | number;
+    fog: any;
 }
 export declare enum VRMUnlitMaterialRenderType {
     Opaque = 0,
