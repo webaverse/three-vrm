@@ -19,7 +19,7 @@ export class VRMSpringBoneImporter {
    *
    * @param gltf A parsed result of GLTF taken from GLTFLoader
    */
-  public async import(gltf: GLTF): Promise<VRMSpringBoneManager | null> {
+  public import(gltf: GLTF): VRMSpringBoneManager | null {
     const vrmExt: VRMSchema.VRM | undefined = gltf.parser.json.extensions?.VRM;
     if (!vrmExt) return null;
 
