@@ -5,6 +5,6 @@ import { VRMSpringBoneManagerDebug } from './VRMSpringBoneManagerDebug';
 import { VRMSpringBoneDebug } from './VRMSpringBoneDebug';
 import { VRMSpringBoneParameters } from '../springbone/VRMSpringBoneParameters';
 export declare class VRMSpringBoneImporterDebug extends VRMSpringBoneImporter {
-    import(gltf: GLTF): Promise<VRMSpringBoneManagerDebug | null>;
+    import(gltf: GLTF): VRMSpringBoneManagerDebug | null;
     protected _createSpringBone(bone: THREE.Object3D, params: VRMSpringBoneParameters): VRMSpringBoneDebug;
 }

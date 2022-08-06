@@ -14,7 +14,7 @@ export declare class VRMSpringBoneImporter {
      *
      * @param gltf A parsed result of GLTF taken from GLTFLoader
      */
-    import(gltf: GLTF): Promise<VRMSpringBoneManager | null>;
+    import(gltf: GLTF): VRMSpringBoneManager | null;
     protected _createSpringBone(bone: THREE.Object3D, params?: VRMSpringBoneParameters): VRMSpringBone;
     protected _importSpringBoneGroupList(gltf: GLTF, schemaSecondaryAnimation: VRMSchema.SecondaryAnimation, colliderGroups: VRMSpringBoneColliderGroup[]): VRMSpringBoneGroup[];
     /**
