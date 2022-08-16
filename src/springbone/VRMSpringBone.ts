@@ -126,7 +126,7 @@ export class VRMSpringBone {
     if (this._center) {
       const matrixWorldInverse = new THREE.Matrix4();
       let matrixWorldInverseNeedsUpdate = true;
-      this._center.updateMatrixWorld = (_updateMatrixWorld => () => {
+      this._center.updateMatrixWorld = (_updateMatrixWorld => function() {
           matrixWorldInverseNeedsUpdate = true;
           return _updateMatrixWorld.apply(this, arguments as any);
       })(this._center.updateMatrixWorld);
