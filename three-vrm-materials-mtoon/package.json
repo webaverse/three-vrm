@@ -1,7 +1,7 @@
 {
-  "name": "@pixiv/three-vrm",
+  "name": "@pixiv/three-vrm-materials-mtoon",
   "version": "1.0.0-beta.19",
-  "description": "VRM file loader for three.js.",
+  "description": "MToon (toon material) module for @pixiv/three-vrm",
   "license": "MIT",
   "author": "pixiv",
   "files": [
@@ -10,8 +10,8 @@
     "/types/",
     "LICENSE"
   ],
-  "main": "lib/three-vrm.js",
-  "module": "lib/three-vrm.module.js",
+  "main": "lib/three-vrm-materials-mtoon.js",
+  "module": "lib/three-vrm-materials-mtoon.module.js",
   "types": "types/index.d.ts",
   "typesVersions": {
     "<3.9": {
@@ -20,21 +20,16 @@
       ]
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pixiv/three-vrm.git"
-  },
   "scripts": {
     "version": "yarn all",
-    "all": "yarn test && yarn lint && yarn clean && yarn build && yarn docs",
+    "all": "yarn lint && yarn clean && yarn build && yarn docs",
     "dev": "cross-env NODE_ENV=development rollup -w -c",
-    "clean": "rimraf docs lib ts*/ types",
+    "clean": "rimraf docs/ lib/ ts*/ types/",
     "build": "yarn build-dev && yarn build-prod && yarn build-types",
     "build-dev": "cross-env NODE_ENV=development rollup -c",
     "build-prod": "cross-env NODE_ENV=production rollup -c",
     "build-types": "tsc --declaration --declarationDir ./types --emitDeclarationOnly && downlevel-dts types ts3.4/types",
     "docs": "typedoc --entryPoints ./src/index.ts --out docs",
-    "test": "echo There is no test for three-vrm",
     "lint": "eslint \"src/**/*.{ts,tsx}\"  && yarn lint-examples &&  prettier \"src/**/*.{ts,tsx}\" --check",
     "lint-examples": "eslint \"examples/**/*.{ts,tsx,js,html}\" --rule \"padded-blocks: error\"",
     "lint-fix": "eslint \"src/**/*.{ts,tsx}\" --fix && eslint \"examples/**/*.{ts,tsx,js,html}\" --fix &&  prettier \"src/**/*.{ts,tsx}\" --write"
@@ -46,21 +41,15 @@
     ]
   },
   "dependencies": {
-    "@pixiv/three-vrm-core": "./three-vrm-core",
-    "@pixiv/three-vrm-materials-hdr-emissive-multiplier": "1.0.0-beta.19",
-    "@pixiv/three-vrm-materials-mtoon": "./three-vrm-materials-mtoon",
-    "@pixiv/three-vrm-materials-v0compat": "1.0.0-beta.19",
-    "@pixiv/three-vrm-node-constraint": "1.0.0-beta.19",
-    "@pixiv/three-vrm-springbone": "./three-vrm-springbone"
+    "@pixiv/types-vrm-0.0": "1.0.0-beta.19",
+    "@pixiv/types-vrmc-materials-mtoon-1.0": "1.0.0-beta.19"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/three": "^0.140.0",
-    "lint-staged": "10.5.4",
-    "three": "../three"
+    "three": "../../three"
   },
   "peerDependencies": {
     "@types/three": "^0.140.0",
-    "three": "../three"
+    "three": "../../three"
   }
 }
